@@ -10,22 +10,6 @@ function handleErrorMiddleware(
     let error = { ...err };
     error.message = err.message;
 
-    // Zod validation error
-    if (err.name === 'ZodError') {
-        const message = err.issues[0]?.message || 'Validation error';
-        error = new ErrorResponse(message, 400);
-    }
-
-    // Duplicate key error (e.g., unique constraint violation)
-    if (err.code === 11000) {
-        let message = 'Duplication error';
-        Object.keys(err.keyValue).forEach((key) => {
-            message = `${key} already exists`;
-        });
-
-        error = new ErrorResponse(message, 400);
-    }
-
     // Validation errors
     if (err.name === 'ValidationError') {
         let message = 'Validation error';

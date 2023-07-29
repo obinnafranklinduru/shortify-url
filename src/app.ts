@@ -6,11 +6,8 @@ import helmet from "helmet";
 import hpp from "hpp";
 import mongoSanitize from "express-mongo-sanitize";
 import morgan from "morgan";
-import passport from 'passport';
 
 import { limiter } from './config/rateLimiter';
-import { setupPassport } from './config/passport';
-import { configureSession } from './config/session';
 import errorHandler from './middlewares/error.middleware';
 import { apiV1Routes } from './routes/apiv1';
 
@@ -23,13 +20,7 @@ class App {
   }
 
   private setup(): void {
-    setupPassport();
     this.configureMiddleware();
-    this.app.use(configureSession());
-
-    this.app.use(passport.initialize());
-    this.app.use(passport.session());
-    
     this.configureRoutes();
     this.configureView();
     this.configureErrorHandling();

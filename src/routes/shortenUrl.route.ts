@@ -1,12 +1,10 @@
 import express, { Router } from 'express';
-
 import { shortenUrl, redirectUrl } from '../controllers/shortenUrl.controller';
-import { isAuthenticated } from '../middlewares/auth.middleware';
 
 const router: Router = express.Router();
 
-router.post('/', isAuthenticated, shortenUrl);
+router.post('/', shortenUrl);
 
-router.get('/:code', isAuthenticated, redirectUrl);
+router.get('/:code', redirectUrl);
 
 export { router as shortenUrlRouter };

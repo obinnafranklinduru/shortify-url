@@ -12,11 +12,6 @@ const shortenUrlSchema = new Schema({
         trim: true,
         required: true 
     },
-    userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    }
 }, { timestamps: true });
 
 export const ShortenUrlModel = model<IShortenUrl>('ShortenUrl', shortenUrlSchema);

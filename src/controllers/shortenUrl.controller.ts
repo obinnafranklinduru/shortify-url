@@ -5,7 +5,6 @@ dotenv.config();
 import { ShortenUrlModel } from '../models/shortenUrl.model';
 import { shortIdGenerator } from '../utils/shortIdGenerator';
 import { isValidUrl } from '../utils/validateUrl';
-import { IUser } from '../interfaces/user.interface';
 import { ErrorResponse } from '../utils/errorResponse';
 import { normalizeUrl } from '../utils/normalizeUrl';
 
@@ -22,12 +21,9 @@ export async function shortenUrl(req: Request, res: Response, next: NextFunction
 
     const shortCode: string = shortIdGenerator.generate();
 
-    const user = req.user as IUser;
-
     await ShortenUrlModel.create({
       longUrl: normalizedUrl,
       shortCode,
-      userId: user._id
     });
 
     res.status(201).json({ shortUrl: `${BASE_URL}/v1/shorten/${shortCode}` });

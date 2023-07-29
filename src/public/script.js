@@ -1,5 +1,3 @@
-// script.js
-
 const shortenButton = document.getElementById('shortenButton');
 const loadingAnimation = document.getElementById('loadingAnimation');
 const shortUrlContainer = document.getElementById('shortUrlResult');

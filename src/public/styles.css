@@ -6,7 +6,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to right, #f39c12, #e74c3c);
+    background: linear-gradient(to right, black, rgb(5, 5, 32));
 }
 
 .container {
